@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Ti</title>
+    <style>
+        /* --- ESCENARIO --- */
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            /* Un cielo más dramático y cálido */
+            background: radial-gradient(circle at center bottom, #FFD700 0%, #87CEEB 60%, #4682B4 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .ground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 120px;
+            /* Suelo con textura */
+            background: linear-gradient(to top, #1a3300 0%, #336600 50%, #4d9900 100%);
+            z-index: 10;
+            box-shadow: 0 -5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- TARJETA DE MENSAJE --- */
+        .card {
+            position: absolute;
+            top: 10%;
+            z-index: 30;
+            background: rgba(255, 255, 255, 0.85);
+            padding: 25px 50px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(255,255,255,0.4);
+            animation: floatCard 4s ease-in-out infinite;
+        }
+
+        h1 { color: #d35400; margin: 0 0 10px 0; font-size: 2.2rem; text-shadow: 1px 1px 2px rgba(0,0,0,0.1); }
+        p { color: #5d4037; font-size: 1.3rem; margin: 0; font-weight: 500;}
+
+        /* --- EL GIRASOL PRINCIPAL --- */
+        /* Contenedor principal que se moverá */
+        .the-sunflower {
+            position: absolute;
+            bottom: 100px; /* Justo sobre el pasto */
+            left: 50%;
+            transform: translateX(-50%); /* Centrado exacto */
+            z-index: 20;
+            transform-origin: bottom center;
+            animation: gracefulSway 6s ease-in-out infinite alternate;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.3)); /* Sombra general para realismo */
+        }
+
+        /* Tallo detallado */
+        .stem {
+            width: 18px;
+            height: 350px;
+            /* Degradado para dar efecto 3D cilíndrico */
+            background: linear-gradient(to right, #1a4d1a, #4caf50, #2d5a27);
+            margin: 0 auto;
+            border-radius: 5px;
+            position: relative;
+            overflow: hidden;
+        }
+        /* Textura sutil en el tallo */
+        .stem::after {
+            content: '';
+            position: absolute;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(45deg, transparent, transparent 5px, rgba(0,0,0,0.05) 5px, rgba(0,0,0,0.05) 10px);
+        }
+
+        /* Hojas grandes y detalladas */
+        .leaf {
+            position: absolute;
+            width: 80px;
+            height: 120px;
+            background: linear-gradient(to bottom right, #4caf50, #1a4d1a);
+            border-radius: 0 70% 0 70%;
+            box-shadow: inset 5px 5px 10px rgba(255,255,255,0.1), 2px 2px 5px rgba(0,0,0,0.3);
+        }
+        .leaf.left {
+            top: 150px; left: -75px;
+            transform: rotate(-30deg);
+            transform-origin: right center;
+        }
+        .leaf.right {
+            top: 80px; right: -75px;
+            transform: scaleX(-1) rotate(-40deg);
+            transform-origin: left center;
+        }
+        /* Nervaduras de las hojas */
+        .leaf::after {
+            content: ''; position: absolute;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(to bottom right, transparent, transparent 10px, rgba(255,255,255,0.1) 10px, rgba(255,255,255,0.1) 11px);
+             border-radius: 0 70% 0 70%;
+        }
+
+
+        /* Cabeza del girasol (Centro + Pétalos) */
+        .flower-head {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            /* Subimos la cabeza para que tape el inicio del tallo */
+            top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* El centro de semillas (Lo más complejo) */
+        .center-seeds {
+            position: absolute;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            z-index: 5;
+            /* Magia CSS para simular semillas y espirales */
+            background: 
+                radial-gradient(circle at center, rgba(0,0,0,0.6) 0%, transparent 60%),
+                repeating-conic-gradient(from 0deg, #3e2723 0deg 10deg, #5d4037 10deg 20deg);
+            background-blend-mode: multiply;
+            box-shadow: inset 0 0 20px rgba(0,0,0,0.8), 0 5px 10px rgba(0,0,0,0.5);
+            border: 4px solid #2c1b17;
+        }
+        /* Textura extra de puntos brillantes en el centro */
+        .center-seeds::before {
+            content: ''; position: absolute; width: 100%; height: 100%; border-radius: 50%;
+            background-image: radial-gradient(#d4a017 1px, transparent 1px);
+            background-size: 8px 8px; opacity: 0.5;
+        }
+
+
+        /* Contenedor de los pétalos */
+        .petals-container {
+            position: absolute;
+            width: 100%; height: 100%;
+            z-index: 3;
+            /* Animación sutil interna de los pétalos */
+            animation: breathe 5s ease-in-out infinite;
+        }
+
+        /* Un pétalo individual */
+        .petal {
+            position: absolute;
+            width: 40px;
+            height: 120px;
+            /* Degradado de naranja a amarillo brillante */
+            background: linear-gradient(to top, #d35400 5%, #FFC107 40%, #FFEB3B 100%);
+            border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+            bottom: 50%; /* Se originan desde el centro */
+            left: calc(50% - 20px);
+            transform-origin: bottom center;
+            box-shadow: 2px -2px 5px rgba(0,0,0,0.2);
+            opacity: 0.95;
+        }
+
+        /* Pétalos de la capa trasera (más oscuros) */
+        .petal.back-layer {
+            z-index: 1;
+            height: 125px;
+            background: linear-gradient(to top, #a04000 0%, #FF9800 100%);
+            filter: brightness(0.9);
+        }
+
+
+        /* --- ANIMACIONES --- */
+        /* Mecedura lenta y majestuosa */
+        @keyframes gracefulSway {
+            0% { transform: translateX(-50%) rotate(2deg); }
+            100% { transform: translateX(-50%) rotate(-2deg); }
+        }
+        
+        /* Flotar suave de la tarjeta */
+        @keyframes floatCard {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        /* "Respiración" sutil de la flor */
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        /* Aparición inicial */
+        @keyframes bloomUp {
+            0% { transform: translateX(-50%) translateY(100vh); opacity: 0;}
+            60% { transform: translateX(-50%) translateY(-20px); opacity: 1;}
+            100% { transform: translateX(-50%) translateY(0); opacity: 1;}
+        }
+
+    </style>
+</head>
+<body>
+        <div class="card">
+            <h1>Un girasol</h1>
+            <p>Porque me despierto, leo tus mensajes y sos como mi sol (me quemo aaaaaa)</p>
+        </div>
+
+        <div class="ground"></div>
+
+        <div class="the-sunflower" style="animation: bloomUp 2s ease-out forwards, gracefulSway 6s ease-in-out 2s infinite alternate;">
+            
+            <div class="flower-head">
+                <div class="center-seeds"></div>
+                
+                <div class="petals-container" id="petals-container"></div>
+            </div>
+
+            <div class="stem">
+                <div class="leaf left"></div>
+                <div class="leaf right"></div>
+            </div>
+        </div>
+
+
+        <script>
+            // JavaScript solo se usa para generar los pétalos en círculo
+            // para no tener que escribir 30 divs a mano en el HTML.
+            const petalsContainer = document.getElementById('petals-container');
+            const numPetals = 24; // Número de pétalos por capa
+
+            // Función para crear una capa de pétalos
+            function createPetalLayer(isBackLayer) {
+                for (let i = 0; i < numPetals; i++) {
+                    const petal = document.createElement('div');
+                    petal.classList.add('petal');
+                    if (isBackLayer) {
+                        petal.classList.add('back-layer');
+                    }
+                    
+                    // Calcular la rotación
+                    const angle = (i * (360 / numPetals));
+                    // Si es la capa de atrás, la rotamos un poco para que se alterne
+                    const offset = isBackLayer ? (360 / numPetals) / 2 : 0;
+                    
+                    // Aplicar la transformación para colocarlo en círculo
+                    // translateY mueve el pétalo hacia afuera desde el centro
+                    petal.style.transform = `rotate(${angle + offset}deg) translateY(-60px)`; // -60px es el radio desde donde nacen
+
+                    petalsContainer.appendChild(petal);
+                }
+            }
+
+            // Creamos dos capas para más volumen
+            createPetalLayer(true);  // Capa trasera
+            createPetalLayer(false); // Capa delantera
+
+        </script>
+
+        <style>
+        .nav-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000; /* Siempre encima de todo */
+            display: flex;
+            flex-direction: column; /* Botones uno encima de otro */
+            gap: 10px;
+        }
+
+        .nav-btn {
+            text-decoration: none;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(5px);
+            padding: 10px 20px;
+            border-radius: 30px;
+            color: #444;
+            font-family: sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid white;
+        }
+
+        .nav-btn:hover {
+            background: #fff;
+            transform: scale(1.05) translateY(-2px);
+            color: #d35400; /* Color al pasar el mouse */
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Colores específicos para diferenciar */
+        .btn-margarita { border-left: 5px solid #fff; }
+        .btn-girasol { border-left: 5px solid #FFD700; }
+        .btn-nota { border-left: 5px solid #ff6f61; }
+    </style>
+
+    <div class="nav-container">
+    <a href="index.html" class="nav-btn btn-margarita" title="Margarita">
+        <span class="nav-icon">🌼</span>
+        <span class="nav-text">Margarita</span>
+    </a>
+    <a href="regalo.html" class="nav-btn btn-girasol" title="Girasol">
+        <span class="nav-icon">🌻</span>
+        <span class="nav-text">Girasol</span>
+    </a>
+    <a href="nota.html" class="nav-btn btn-nota" title="Carta">
+        <span class="nav-icon">💌</span>
+        <span class="nav-text">Carta</span>
+    </a>
+</div>
+
+<style>
+    /* --- ESTILOS GENERALES (PC) --- */
+    .nav-container {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 1000;
+        display: flex;
+        flex-direction: column; /* En PC: Vertical */
+        gap: 10px;
+    }
+
+    .nav-btn {
+        text-decoration: none;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(5px);
+        padding: 10px 20px;
+        border-radius: 30px;
+        color: #444;
+        font-family: 'Segoe UI', sans-serif;
+        font-weight: bold;
+        font-size: 14px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); /* Efecto rebote */
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        border: 2px solid white;
+    }
+
+    .nav-btn:hover {
+        transform: scale(1.05) translateX(-5px);
+        background: #fff;
+        color: #d35400;
+    }
+
+    /* Colores de borde */
+    .btn-margarita { border-left: 5px solid #aed6f1; }
+    .btn-girasol { border-left: 5px solid #FFD700; }
+    .btn-nota { border-left: 5px solid #ff6f61; }
+
+    /* --- MODO NOCHE (Ajuste de colores) --- */
+    body.night-mode .nav-btn {
+        background: rgba(40, 40, 60, 0.8);
+        color: #fff;
+        border-color: #555;
+    }
+
+    /* =========================================
+       TRANSFORMACIÓN PARA MÓVILES (RESPONSIVE)
+    ========================================= */
+    @media (max-width: 768px) {
+        .nav-container {
+            /* Cambiamos posición: Abajo al centro */
+            bottom: 20px;
+            right: auto;
+            left: 50%;
+            transform: translateX(-50%);
+            
+            /* Cambiamos dirección: Horizontal */
+            flex-direction: row;
+            gap: 20px;
+            
+            /* Fondo sutil para unir los botones (estilo dock de iPhone) */
+            background: rgba(255,255,255,0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .nav-btn {
+            /* Hacemos los botones circulares */
+            width: 50px;
+            height: 50px;
+            padding: 0;
+            border-radius: 50%;
+            justify-content: center; /* Centrar icono */
+            border: 2px solid white;
+            border-left: 2px solid white; /* Quitamos el borde grueso lateral */
+        }
+
+        /* Ocultamos el texto en el celular */
+        .nav-text {
+            display: none;
+        }
+
+        /* Hacemos el icono más grande */
+        .nav-icon {
+            font-size: 24px;
+            margin: 0;
+        }
+
+        /* Ajuste Hover en movil */
+        .nav-btn:hover {
+            transform: scale(1.1) translateY(-5px); /* Sube un poquito */
+        }
+        
+        /* Ajuste contenedor noche móvil */
+        body.night-mode .nav-container {
+            background: rgba(0,0,0,0.3);
+            border-color: #444;
+        }
+    }
+</style>
+
+<button id="toggle-night" class="night-btn">🌙</button>
+
+<style>
+    /* --- NUEVO: TRANSICIONES SUAVES --- */
+    /* Esta es la magia. Aplicamos una transición de 1.5 segundos a todo lo que cambia */
+    body, .ground, .card, .card h1, .card p, .night-btn,
+    .daisy-wrapper, .the-sunflower, .flower-container {
+        transition: all 1.5s ease-in-out !important;
+    }
+
+    /* Configuración base para las estrellas para que aparezcan suavemente */
+    body::before {
+        opacity: 0;
+        transition: opacity 2s ease-in-out; /* Las estrellas tardan más en aparecer */
+    }
+
+    /* --- Estilo del Botón de Cambio --- */
+    .night-btn {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 1000;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid white;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        font-size: 24px;
+        cursor: pointer;
+        backdrop-filter: blur(5px);
+        box-shadow: 0 0 10px rgba(255,255,255,0.3);
+    }
+    .night-btn:hover {
+        transform: rotate(15deg) scale(1.1);
+        background: rgba(255, 255, 255, 0.4);
+    }
+
+    /* --- ESTILOS MODO NOCHE --- */
+    
+    /* Cielo Nocturno */
+    body.night-mode {
+        /* Usamos background-image para que la transición de gradientes funcione mejor */
+        background-image: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%) !important;
+    }
+
+    /* Suelo Oscuro */
+    body.night-mode .ground {
+        background-image: linear-gradient(to top, #0f2027 0%, #203a43 100%) !important;
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.8);
+    }
+
+    /* Tarjeta Brillante en la oscuridad */
+    body.night-mode .card {
+        background: rgba(20, 20, 40, 0.6);
+        border: 1px solid rgba(255,255,255,0.1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+    }
+    body.night-mode h1 { color: #fff; text-shadow: 0 0 10px #fff, 0 0 20px #ff00de; }
+    body.night-mode p { color: #ddd; }
+
+    /* Ajuste de iluminación en las flores */
+    body.night-mode .daisy-wrapper, 
+    body.night-mode .the-sunflower,
+    body.night-mode .flower-container {
+        /* CORRECTO (Todo junto) */
+filter: brightness(0.7) contrast(1.3) drop-shadow(0 0 10px rgba(200, 200, 255, 0.3));
+    }
+    
+    /* El botón en modo noche */
+    body.night-mode .night-btn {
+        background: rgba(255,255,200, 0.2);
+        border-color: #ffeb3b;
+        box-shadow: 0 0 15px #ffeb3b;
+    }
+
+    /* Estrellas (Aparecen suavemente) */
+    body.night-mode::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        background-image: 
+            radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 3px),
+            radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 2px),
+            radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 3px);
+        background-size: 550px 550px, 350px 350px, 250px 250px;
+        background-position: 0 0, 40px 60px, 130px 270px;
+        opacity: 0.8; /* Aquí se activa la transición de opacidad definida arriba */
+        z-index: 1;
+        animation: twinkle 10s linear infinite;
+    }
+
+    @keyframes twinkle {
+        from { transform: translateY(0); }
+        to { transform: translateY(-100px); }
+    }
+</style>
+
+<script>
+    const btn = document.getElementById('toggle-night');
+    const bodyElement = document.body;
+
+    // Verificar si ya estaba en modo noche
+    if (localStorage.getItem('theme') === 'night') {
+        bodyElement.classList.add('night-mode');
+        btn.textContent = '☀️';
+    }
+
+    btn.addEventListener('click', () => {
+        bodyElement.classList.toggle('night-mode');
+        
+        if (bodyElement.classList.contains('night-mode')) {
+            btn.textContent = '☀️';
+            localStorage.setItem('theme', 'night');
+        } else {
+            btn.textContent = '🌙';
+            localStorage.setItem('theme', 'day');
+        }
+    });
+</script>
+</body>
+</html>
