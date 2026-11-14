@@ -1,0 +1,1643 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Para Paloma ♡ Nuestro Primer Año</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Dancing+Script:wght@600;700&family=Inter:wght@300;400;600&family=Playfair+Display:ital,wght@0,500;0,700;1,400;1,600&family=Caveat:wght@600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #07060b;
+      --romantic-rose: #d65a7f;
+      --vintage-gold: #e2ba73;
+      --paper-bg: #f9f5ec;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      background-image: 
+        radial-gradient(ellipse at 20% 20%, rgba(88, 28, 135, 0.14) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 70%, rgba(159, 18, 57, 0.12) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 50%, #0d0b14 0%, #050408 100%);
+      color: #e5e7eb;
+      overflow-x: hidden;
+    }
+    .font-serif-vintage {
+      font-family: 'Playfair Display', serif;
+    }
+    .font-script {
+      font-family: 'Dancing Script', cursive;
+    }
+    .font-handwriting {
+      font-family: 'Caveat', cursive;
+    }
+    .font-cinzel {
+      font-family: 'Cinzel', serif;
+    }
+
+    /* Daisy Petal animations */
+    .petal {
+      transform-origin: bottom center;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+    }
+    .petal:hover {
+      filter: brightness(1.15) drop-shadow(0 0 10px rgba(254, 240, 138, 0.7));
+    }
+    .petal.plucked {
+      opacity: 0;
+      transform: translateY(120px) rotate(45deg) scale(0.6) !important;
+      pointer-events: none;
+    }
+
+    /* Starfield & Shooting Stars */
+    .star-twinkle {
+      animation: twinkle var(--twinkle-duration, 3s) ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      0% { opacity: 0.15; transform: scale(0.7); }
+      100% { opacity: 1; transform: scale(1.25); }
+    }
+    .shooting-star {
+      position: absolute;
+      width: 110px;
+      height: 2px;
+      background: linear-gradient(90deg, rgba(255,255,255,0.95), rgba(244,114,182,0.5), transparent);
+      border-radius: 999px;
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.8));
+      animation: shoot 1.6s ease-out forwards;
+      pointer-events: none;
+    }
+    @keyframes shoot {
+      0% { transform: translateX(0) translateY(0) rotate(-35deg) scaleX(0.2); opacity: 1; }
+      70% { opacity: 1; }
+      100% { transform: translateX(-420px) translateY(290px) rotate(-35deg) scaleX(1); opacity: 0; }
+    }
+
+    /* Plushie Shelf & Character Animations */
+    .wooden-shelf {
+      background: linear-gradient(180deg, #3d231a 0%, #26150f 65%, #160b08 100%);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.85), inset 0 2px 3px rgba(255, 214, 170, 0.22);
+      border-top: 2px solid #5c3728;
+      border-bottom: 4px solid #120906;
+    }
+    .plushie-item {
+      animation: plushieFloat 3.4s ease-in-out infinite alternate;
+      transform-origin: bottom center;
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+    }
+    .plushie-item:nth-child(even) {
+      animation-delay: 1.2s;
+    }
+    .plushie-item:nth-child(3n) {
+      animation-delay: 0.6s;
+    }
+    @keyframes plushieFloat {
+      0% { transform: translateY(0px) rotate(-0.8deg); }
+      100% { transform: translateY(-5px) rotate(0.8deg); }
+    }
+    .plushie-item:hover {
+      animation-play-state: paused;
+      transform: translateY(-12px) scale(1.09) rotate(2deg) !important;
+      filter: drop-shadow(0 12px 20px rgba(236, 72, 153, 0.4));
+    }
+    .plushie-bounce {
+      animation: boing 0.6s cubic-bezier(0.28, 0.84, 0.42, 1) !important;
+    }
+    @keyframes boing {
+      0% { transform: scale(1, 1) translateY(0); }
+      30% { transform: scale(1.18, 0.84) translateY(4px); }
+      50% { transform: scale(0.9, 1.15) translateY(-18px); }
+      70% { transform: scale(1.05, 0.95) translateY(0); }
+      100% { transform: scale(1, 1) translateY(0); }
+    }
+    .fairy-light {
+      animation: fairyGlow 2s infinite alternate ease-in-out;
+    }
+    @keyframes fairyGlow {
+      0% { opacity: 0.55; transform: scale(0.9); filter: drop-shadow(0 0 4px #fbbf24); }
+      100% { opacity: 1; transform: scale(1.15); filter: drop-shadow(0 0 12px #f59e0b); }
+    }
+
+    /* Interactive 12-Page Scrapbook */
+    .book-wrapper {
+      perspective: 1800px;
+    }
+    .book-spread {
+      background: linear-gradient(90deg, #e9decb 0%, #f7f1e5 46%, #d8c8b0 49.5%, #b5a184 50%, #d8c8b0 50.5%, #f7f1e5 54%, #e9decb 100%);
+      box-shadow: 
+        0 25px 50px -12px rgba(0, 0, 0, 0.85),
+        0 0 0 8px #2e1921,
+        0 0 0 11px #704248,
+        inset 0 0 40px rgba(139, 92, 46, 0.18);
+    }
+    @media (max-width: 767px) {
+      .book-spread {
+        background: linear-gradient(180deg, #f7f1e5 0%, #ede2cf 100%);
+      }
+    }
+    .page-flip-anim {
+      animation: pageTurnEffect 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    @keyframes pageTurnEffect {
+      0% { opacity: 0.35; transform: rotateY(10deg) scale(0.98); }
+      100% { opacity: 1; transform: rotateY(0deg) scale(1); }
+    }
+    .washi-tape {
+      background: rgba(225, 29, 72, 0.22);
+      backdrop-filter: blur(2px);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.12);
+      border-left: 2px dashed rgba(255,255,255,0.35);
+      border-right: 2px dashed rgba(255,255,255,0.35);
+    }
+
+    /* Candle flicker */
+    .candle-flame {
+      animation: flicker 1.4s infinite alternate ease-in-out;
+      transform-origin: center bottom;
+    }
+    @keyframes flicker {
+      0% { transform: scale(1) rotate(-1deg); opacity: 0.9; filter: drop-shadow(0 0 8px #f59e0b); }
+      50% { transform: scale(1.08, 1.15) rotate(2deg); opacity: 1; filter: drop-shadow(0 0 14px #fbbf24); }
+      100% { transform: scale(0.95, 0.92) rotate(-2deg); opacity: 0.85; filter: drop-shadow(0 0 10px #f59e0b); }
+    }
+
+    /* Modal transition */
+    .smooth-fade {
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #111019;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #3c2a38;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #e2ba73;
+    }
+  </style>
+</head>
+<body class="relative min-h-screen selection:bg-rose-500 selection:text-white">
+
+  <!-- Reproductor de Música Local con Control de Volumen -->
+  <audio id="bgMusic" src="Time-Bomb.mp3" loop preload="auto"></audio>
+
+  <div class="fixed top-4 right-4 z-50 flex items-center space-x-3 bg-black/75 backdrop-blur-md px-4 py-2 rounded-full border border-rose-500/40 text-xs shadow-lg">
+    <button id="toggleAudioBtn" class="flex items-center space-x-2 text-rose-300 hover:text-rose-100 transition font-medium">
+      <svg id="musicIcon" class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+      </svg>
+      <span id="musicText">Música: Pausada</span>
+    </button>
+
+    <!-- Separador -->
+    <span class="h-3 w-[1px] bg-rose-500/30"></span>
+
+    <!-- Control de Volumen -->
+    <div class="flex items-center space-x-1.5" title="Ajustar volumen">
+      <span id="volEmoji" class="text-[11px] select-none">🔉</span>
+      <input 
+        id="volumeSlider" 
+        type="range" 
+        min="0" 
+        max="1" 
+        step="0.01" 
+        value="0.35" 
+        class="w-16 sm:w-20 h-1.5 bg-rose-950 rounded-lg appearance-none cursor-pointer accent-rose-400"
+      >
+      <span id="volPercent" class="text-[10px] text-rose-200/80 font-mono w-7 text-right">35%</span>
+    </div>
+  </div>
+
+  <!-- Background Stars & Atmosphere -->
+  <div id="starsContainer" class="fixed inset-0 pointer-events-none z-0 overflow-hidden"></div>
+
+  <!-- ============================================== -->
+  <!-- VISTA 1: LA PÁGINA CLÁSICA DE LA MARGARITA     -->
+  <!-- ============================================== -->
+  <main id="daisyView" class="min-h-screen flex flex-col items-center justify-between p-6 relative z-10 transition-opacity duration-700">
+    
+    <!-- Header -->
+    <header class="text-center mt-6">
+      <p class="font-script text-rose-400 text-2xl md:text-3xl tracking-wide mb-1">Para el amor de mi vida</p>
+      <h1 class="font-serif-vintage text-4xl md:text-6xl text-transparent bg-clip-text bg-gradient-to-r from-rose-200 via-pink-300 to-amber-200 font-bold tracking-tight">
+        Paloma ♡
+      </h1>
+      <p class="text-xs md:text-sm text-gray-400 tracking-widest uppercase mt-2">
+        10 de Noviembre • 1er Año Juntos
+      </p>
+    </header>
+
+    <!-- Interactive Daisy Flower Interactive Area -->
+    <div class="flex flex-col items-center justify-center my-8 relative">
+      <div class="relative w-80 h-80 flex items-center justify-center">
+        
+        <!-- Glowing Halo behind daisy -->
+        <div class="absolute w-64 h-64 rounded-full bg-gradient-to-tr from-rose-500/20 via-amber-400/15 to-transparent blur-2xl"></div>
+
+        <!-- Stem & leaves -->
+        <svg class="absolute top-48 w-24 h-48 pointer-events-none" viewBox="0 0 100 200">
+          <path d="M50 0 Q 30 100, 50 200" stroke="#15803d" stroke-width="8" fill="none" stroke-linecap="round"/>
+          <!-- Leaf left -->
+          <path d="M43 70 C 10 60, 5 95, 45 90" fill="#22c55e" opacity="0.8"/>
+          <!-- Leaf right -->
+          <path d="M48 120 C 85 110, 90 145, 49 140" fill="#22c55e" opacity="0.8"/>
+        </svg>
+
+        <!-- Daisy Petals Container -->
+        <div id="flowerPetals" class="relative w-64 h-64 flex items-center justify-center">
+          <!-- Petals generated dynamically via JS for precision & physics -->
+        </div>
+
+        <!-- Flower Core / Center Button -->
+        <div id="flowerCenter" class="absolute z-20 w-24 h-24 rounded-full bg-gradient-to-br from-amber-300 via-yellow-400 to-amber-600 shadow-[0_0_35px_rgba(245,158,11,0.6)] flex flex-col items-center justify-center cursor-pointer transform hover:scale-105 active:scale-95 transition border-4 border-yellow-200/40">
+          <span class="text-amber-950 font-bold text-xs tracking-wider uppercase text-center font-serif-vintage px-1">Tócame</span>
+          <span id="daisyCounter" class="text-[10px] text-amber-900 font-semibold mt-0.5">12 pétalos</span>
+        </div>
+      </div>
+
+      <!-- Love Oracle Message beneath flower -->
+      <div class="min-h-[50px] mt-6 text-center max-w-sm px-4">
+        <p id="petalOracleText" class="font-handwriting text-2xl text-rose-200 transition-all duration-300">
+          "Arranca cada pétalo para descubrir un pedacito de lo que siento por ti..."
+        </p>
+      </div>
+    </div>
+
+    <!-- SECRET PORTAL / ENTRADA ESPECIAL AL UNIVERSO DE 1 AÑO -->
+    <div class="mb-8 flex flex-col items-center">
+      <p class="text-xs text-rose-300/70 uppercase tracking-widest mb-3 flex items-center gap-2">
+        <span class="inline-block w-8 h-[1px] bg-rose-400/40"></span>
+        Una sorpresa más profunda
+        <span class="inline-block w-8 h-[1px] bg-rose-400/40"></span>
+      </p>
+
+      <button id="openAnniversaryHubBtn" class="group relative px-7 py-3 rounded-full overflow-hidden bg-gradient-to-r from-purple-950 via-rose-900 to-amber-950 border border-rose-400/50 shadow-[0_0_25px_rgba(214,90,127,0.4)] hover:shadow-[0_0_35px_rgba(214,90,127,0.7)] transition duration-500 transform hover:-translate-y-0.5">
+        <div class="absolute inset-0 bg-gradient-to-r from-rose-500/20 to-amber-400/20 opacity-0 group-hover:opacity-100 transition duration-500"></div>
+        <div class="flex items-center space-x-3 text-rose-100 font-serif-vintage tracking-wider text-sm md:text-base relative z-10">
+          <span class="text-amber-300 text-lg group-hover:rotate-12 transition">🗝️</span>
+          <span>Nuestro Universo • 1 Año Juntos</span>
+          <svg class="w-4 h-4 text-rose-300 group-hover:translate-x-1 transition" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
+          </svg>
+        </div>
+      </button>
+      <span class="text-[11px] text-gray-500 mt-2 font-light">Nuestros recitales, los peluches, fotos y tu respuesta...</span>
+    </div>
+
+  </main>
+
+
+  <!-- ============================================== -->
+  <!-- VISTA 2: EL UNIVERSO EXPANDIDO DEL ANIVERSARIO -->
+  <!-- ============================================== -->
+  <section id="anniversaryHub" class="hidden min-h-screen relative z-20 pb-24 transition-opacity duration-700">
+    
+    <!-- Top Navigation Bar -->
+    <nav class="sticky top-0 z-40 bg-black/80 backdrop-blur-md border-b border-rose-950/60 px-4 md:px-8 py-3 flex items-center justify-between">
+      <button id="backToDaisyBtn" class="flex items-center space-x-2 text-xs md:text-sm text-gray-400 hover:text-rose-300 transition py-1 px-3 rounded-full hover:bg-white/5">
+        <span>←</span>
+        <span>Volver a la Margarita</span>
+      </button>
+
+      <div class="text-center">
+        <span class="font-cinzel text-amber-200 text-xs md:text-sm tracking-widest">PALOMA & MAU</span>
+        <span class="block text-[10px] text-rose-400/80 font-mono tracking-tight">10.11.2025 • 10.11.2026</span>
+      </div>
+
+      <!-- Quick Nav Jump -->
+      <div class="flex space-x-1 md:space-x-2">
+        <button onclick="scrollToSection('peluchesSection')" title="Peluches" class="p-2 text-rose-300 hover:bg-rose-900/30 rounded-full transition text-sm">🧸</button>
+        <button onclick="scrollToSection('musicaSection')" title="Música & Recitales" class="p-2 text-rose-300 hover:bg-rose-900/30 rounded-full transition text-sm">🎸</button>
+        <button onclick="scrollToSection('recuerdosSection')" title="Libro de Recuerdos" class="p-2 text-rose-300 hover:bg-rose-900/30 rounded-full transition text-sm">📖</button>
+        <button onclick="scrollToSection('cartasSection')" title="Mi Carta para Ti" class="p-2 text-rose-300 hover:bg-rose-900/30 rounded-full transition text-sm">✉️</button>
+      </div>
+    </nav>
+
+    <!-- Hero Banner of the 1st Year -->
+    <div class="max-w-4xl mx-auto px-6 pt-12 pb-8 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-rose-950/40 border border-rose-500/30 text-rose-300 text-xs font-mono mb-4">
+        <span>✨ 365 días amándote cada instante</span>
+      </div>
+      <h2 class="font-serif-vintage text-3xl md:text-5xl text-rose-100 font-bold tracking-tight mb-4 leading-tight">
+        Todo lo que vivimos, sentimos y soñamos juntos
+      </h2>
+      <p class="text-sm md:text-base text-gray-300 max-w-2xl mx-auto leading-relaxed">
+        Este año me enseñaste lo hermoso que es caminar al lado de alguien paciente, dulce y con el corazón más sincero del mundo. Este rincón recopila cada pequeño detalle que nos define.
+      </p>
+    </div>
+
+    <!-- Content Sections Wrapper -->
+    <div class="max-w-5xl mx-auto px-4 md:px-6 space-y-24 mt-8">
+
+      <!-- ============================================== -->
+      <!-- SECCIÓN 1: NUESTRA COLECCIÓN DE PELUCHES      -->
+      <!-- ============================================== -->
+      <section id="peluchesSection" class="relative bg-gradient-to-b from-[#171124]/95 to-[#0e0a16]/95 rounded-3xl p-6 md:p-10 border border-purple-800/50 shadow-[0_0_50px_rgba(88,28,135,0.3)] overflow-hidden backdrop-blur-sm">
+        <!-- Ambient glow -->
+        <div class="absolute -right-16 -top-16 w-64 h-64 bg-fuchsia-900/15 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -left-16 -bottom-16 w-64 h-64 bg-orange-900/15 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-6 pb-4 border-b border-purple-800/40 relative z-10">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-purple-300 font-semibold flex items-center gap-2">
+              <span>✨ Kuromi & Colección Cajita Embrujada Mostaza</span>
+            </span>
+            <h3 class="font-serif-vintage text-2xl md:text-4xl text-purple-100 font-bold mt-1">
+              🧸 El Estante Animado de Peluches
+            </h3>
+          </div>
+          <p class="text-xs text-purple-200/80 mt-2 md:mt-0 max-w-xs bg-purple-950/50 px-3 py-2 rounded-xl border border-purple-500/30">
+            💡 <strong>¡Tienen vida propia!</strong> Tocá a cualquiera en el estante para que salte y te deje leer su notita secreta.
+          </p>
+        </div>
+
+        <!-- Illuminated Wooden Shelf Cabinet -->
+        <div class="relative bg-[#0c0814] rounded-2xl p-4 md:p-8 border-4 border-[#2b1812] shadow-inner overflow-hidden">
+          
+          <!-- Fairy Lights Garland at the top of the shelf -->
+          <div class="relative w-full flex justify-around items-center pb-4 pt-1 pointer-events-none">
+            <div class="absolute top-2 left-0 right-0 h-[1.5px] bg-amber-900/50"></div>
+            <span class="w-3 h-3 rounded-full bg-amber-300 fairy-light"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-pink-400 fairy-light" style="animation-delay:0.4s"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-200 fairy-light" style="animation-delay:0.8s"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-purple-400 fairy-light" style="animation-delay:1.2s"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-300 fairy-light" style="animation-delay:0.2s"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-orange-400 fairy-light" style="animation-delay:1s"></span>
+            <span class="w-3 h-3 rounded-full bg-amber-200 fairy-light" style="animation-delay:0.6s"></span>
+            <span class="w-2.5 h-2.5 rounded-full bg-pink-400 fairy-light" style="animation-delay:1.5s"></span>
+          </div>
+
+          <!-- ================= ESTANTE SUPERIOR (3 PELUCHES + CAJITA) ================= -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-end pt-4 px-2 md:px-6 relative z-10">
+            
+            <!-- 1. KUROMI -->
+            <div id="plush-kuromi" onclick="interactPlushie('kuromi', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <!-- Floating Mini Note Tag -->
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-fuchsia-950/90 border border-pink-400/50 text-[10px] text-pink-200 font-handwriting text-sm shadow-md group-hover:bg-pink-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"¡Escuchame!"</span>
+              </div>
+              <!-- Kuromi Custom SVG -->
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Left & Right Jester Ears -->
+                <polygon points="36,52 12,14 58,36" fill="#1e1b24" stroke="#09080c" stroke-width="3" stroke-linejoin="round"/>
+                <circle cx="10" cy="12" r="7" fill="#3a3542" stroke="#09080c" stroke-width="2.5"/>
+                <polygon points="104,52 128,14 82,36" fill="#1e1b24" stroke="#09080c" stroke-width="3" stroke-linejoin="round"/>
+                <circle cx="130" cy="12" r="7" fill="#3a3542" stroke="#09080c" stroke-width="2.5"/>
+                <!-- Body -->
+                <ellipse cx="70" cy="112" rx="23" ry="20" fill="#ffffff" stroke="#09080c" stroke-width="3"/>
+                <!-- Hood -->
+                <ellipse cx="70" cy="68" rx="44" ry="38" fill="#1e1b24" stroke="#09080c" stroke-width="3"/>
+                <!-- Jester Collar -->
+                <polygon points="35,96 18,108 48,105" fill="#1e1b24" stroke="#09080c" stroke-width="2.5"/>
+                <circle cx="16" cy="109" r="4.5" fill="#f472b6" stroke="#09080c" stroke-width="2"/>
+                <polygon points="105,96 122,108 92,105" fill="#1e1b24" stroke="#09080c" stroke-width="2.5"/>
+                <circle cx="124" cy="109" r="4.5" fill="#f472b6" stroke="#09080c" stroke-width="2"/>
+                <!-- White Face Cutout (Widow's peak) -->
+                <path d="M 38 74 C 38 56, 56 56, 70 65 C 84 56, 102 56, 102 74 C 102 92, 88 100, 70 100 C 52 100, 38 92, 38 74 Z" fill="#ffffff" stroke="#09080c" stroke-width="3"/>
+                <!-- Pink Skull on Forehead -->
+                <ellipse cx="70" cy="46" rx="13" ry="11" fill="#f472b6" stroke="#09080c" stroke-width="2"/>
+                <rect x="65" y="53" width="10" height="5" rx="1" fill="#f472b6" stroke="#09080c" stroke-width="1.5"/>
+                <ellipse cx="65" cy="46" rx="2.8" ry="3.8" fill="#1e1b24"/>
+                <ellipse cx="75" cy="46" rx="2.8" ry="3.8" fill="#1e1b24"/>
+                <line x1="68" y1="54" x2="68" y2="58" stroke="#1e1b24" stroke-width="1.5"/>
+                <line x1="72" y1="54" x2="72" y2="58" stroke="#1e1b24" stroke-width="1.5"/>
+                <!-- Sassy Eyes -->
+                <ellipse cx="53" cy="77" rx="5.5" ry="8" fill="#09080c" transform="rotate(-8 53 77)"/>
+                <line x1="46" y1="69" x2="58" y2="73" stroke="#09080c" stroke-width="2.5" stroke-linecap="round"/>
+                <ellipse cx="87" cy="77" rx="5.5" ry="8" fill="#09080c" transform="rotate(8 87 77)"/>
+                <line x1="94" y1="69" x2="82" y2="73" stroke="#09080c" stroke-width="2.5" stroke-linecap="round"/>
+                <!-- Pink Nose & Smirk -->
+                <ellipse cx="70" cy="83" rx="3.2" ry="2.2" fill="#f472b6" stroke="#09080c" stroke-width="1.5"/>
+                <path d="M 67 89 Q 73 93, 77 87" fill="none" stroke="#09080c" stroke-width="2.2" stroke-linecap="round"/>
+                <!-- Paws together under chin -->
+                <circle cx="63" cy="102" r="7.5" fill="#ffffff" stroke="#09080c" stroke-width="2.5"/>
+                <circle cx="77" cy="102" r="7.5" fill="#ffffff" stroke="#09080c" stroke-width="2.5"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-pink-200 mt-1">Kuromi</span>
+              <span class="text-[10px] text-pink-400/80">La Jefa del Estante</span>
+            </div>
+
+            <!-- 2. GATITO NEGRO BRUJO (MOSTAZA) -->
+            <div id="plush-gatito" onclick="interactPlushie('gatito', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-purple-950/90 border border-purple-400/50 text-purple-200 font-handwriting text-sm shadow-md group-hover:bg-purple-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"Miau mágico"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Seated Body & Paws -->
+                <ellipse cx="70" cy="108" rx="28" ry="23" fill="#141419" stroke="#2d2a38" stroke-width="2"/>
+                <circle cx="45" cy="122" r="10" fill="#101014" stroke="#2d2a38" stroke-width="2"/>
+                <circle cx="95" cy="122" r="10" fill="#101014" stroke="#2d2a38" stroke-width="2"/>
+                <!-- Cat Ears -->
+                <circle cx="42" cy="54" r="11" fill="#141419"/>
+                <circle cx="98" cy="54" r="11" fill="#141419"/>
+                <!-- Fluffy Black Head -->
+                <ellipse cx="70" cy="68" rx="34" ry="29" fill="#18181f" stroke="#2d2a38" stroke-width="2"/>
+                <!-- Purple & Orange Witch Hat -->
+                <ellipse cx="70" cy="40" rx="24" ry="6" fill="#4c1d95" stroke="#2e1065" stroke-width="2"/>
+                <polygon points="52,39 66,10 88,39" fill="#5b21b6" stroke="#2e1065" stroke-width="2" stroke-linejoin="round"/>
+                <path d="M 54 35 Q 70 38, 86 35" stroke="#ea580c" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+                <!-- Glossy Eyes & Tiny Pink Nose -->
+                <circle cx="57" cy="69" r="4" fill="#09090b"/>
+                <circle cx="56" cy="67.5" r="1.5" fill="#ffffff"/>
+                <circle cx="83" cy="69" r="4" fill="#09090b"/>
+                <circle cx="82" cy="67.5" r="1.5" fill="#ffffff"/>
+                <ellipse cx="70" cy="74" rx="3" ry="2" fill="#f472b6"/>
+                <!-- Purple Ribbon Bow on Neck -->
+                <path d="M 55 95 L 85 95" stroke="#7c3aed" stroke-width="4" stroke-linecap="round"/>
+                <polygon points="70,95 56,89 56,102" fill="#6d28d9"/>
+                <polygon points="70,95 84,89 84,102" fill="#6d28d9"/>
+                <path d="M 68 96 L 60 109 M 72 96 L 80 109" stroke="#7c3aed" stroke-width="3.5" stroke-linecap="round"/>
+                <circle cx="70" cy="95" r="3.5" fill="#8b5cf6"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-purple-200 mt-1">Gatito Brujo</span>
+              <span class="text-[10px] text-purple-400/80">Hechizo de Amor</span>
+            </div>
+
+            <!-- 3. FRANKENSTEIN / FRANKY (MOSTAZA) -->
+            <div id="plush-frankenstein" onclick="interactPlushie('frankenstein', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-emerald-950/90 border border-emerald-400/50 text-emerald-200 font-handwriting text-sm shadow-md group-hover:bg-emerald-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"¡Leeme!"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Body & Arms -->
+                <ellipse cx="70" cy="104" rx="26" ry="24" fill="#84a96b" stroke="#536f40" stroke-width="2"/>
+                <ellipse cx="42" cy="102" rx="9" ry="14" fill="#84a96b" transform="rotate(20 42 102)"/>
+                <ellipse cx="98" cy="102" rx="9" ry="14" fill="#84a96b" transform="rotate(-20 98 102)"/>
+                <!-- Black Feet -->
+                <circle cx="48" cy="121" r="10.5" fill="#18181b"/>
+                <circle cx="92" cy="121" r="10.5" fill="#18181b"/>
+                <!-- Grey Side Bolts -->
+                <rect x="27" y="55" width="9" height="12" rx="3" fill="#9ca3af" stroke="#4b5563" stroke-width="2"/>
+                <rect x="104" y="55" width="9" height="12" rx="3" fill="#9ca3af" stroke="#4b5563" stroke-width="2"/>
+                <!-- Green Head -->
+                <ellipse cx="70" cy="60" rx="35" ry="31" fill="#8fb374" stroke="#536f40" stroke-width="2"/>
+                <!-- Black Monster Hair -->
+                <path d="M 36 52 C 36 26, 104 26, 104 52 L 96 44 L 87 50 L 78 43 L 70 49 L 61 43 L 52 50 L 43 44 Z" fill="#18181b"/>
+                <!-- Forehead Stitch -->
+                <line x1="80" y1="48" x2="92" y2="54" stroke="#27272a" stroke-width="2" stroke-linecap="round"/>
+                <line x1="83" y1="53" x2="86" y2="47" stroke="#27272a" stroke-width="1.8"/>
+                <line x1="88" y1="55" x2="91" y2="49" stroke="#27272a" stroke-width="1.8"/>
+                <!-- Cute Eyes & Smile -->
+                <circle cx="56" cy="64" r="4" fill="#18181b"/>
+                <circle cx="55" cy="62.5" r="1.4" fill="#ffffff"/>
+                <circle cx="84" cy="64" r="4" fill="#18181b"/>
+                <circle cx="83" cy="62.5" r="1.4" fill="#ffffff"/>
+                <path d="M 64 71 Q 70 76, 76 71" fill="none" stroke="#18181b" stroke-width="2.3" stroke-linecap="round"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-emerald-200 mt-1">Franky</span>
+              <span class="text-[10px] text-emerald-400/80">Costuras de Amor</span>
+            </div>
+
+            <!-- 4. CALABAZA CON CIERRE (ESTUCHE MOSTAZA) -->
+            <div id="plush-calabaza-cierre" onclick="interactPlushie('calabazaCierre', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-orange-950/90 border border-orange-400/50 text-orange-200 font-handwriting text-sm shadow-md group-hover:bg-orange-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"¡Abrime!"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Green Stem -->
+                <path d="M 66 32 Q 72 20, 81 26 Q 76 34, 74 35 Z" fill="#22c55e" stroke="#15803d" stroke-width="2"/>
+                <!-- Top Dome of Pumpkin -->
+                <path d="M 32 80 C 30 42, 110 42, 108 80 Z" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+                <!-- Bottom Pouch of Pumpkin -->
+                <path d="M 32 86 C 32 126, 108 126, 108 86 Z" fill="#fb923c" stroke="#c2410c" stroke-width="2"/>
+                <!-- Center Zipper Line -->
+                <rect x="31" y="79" width="78" height="7" rx="3" fill="#b45309" stroke="#78350f" stroke-width="1.5"/>
+                <line x1="34" y1="82.5" x2="106" y2="82.5" stroke="#fcd34d" stroke-width="2" stroke-dasharray="3 3"/>
+                <!-- Jack-o'-lantern Face -->
+                <polygon points="50,62 57,51 63,62" fill="#18181b"/>
+                <polygon points="77,62 83,51 90,62" fill="#18181b"/>
+                <polygon points="67,67 70,62 73,67" fill="#18181b"/>
+                <!-- Toothy grin -->
+                <path d="M 49 69 Q 70 83, 91 69 Q 70 76, 49 69 Z" fill="#18181b" stroke="#18181b" stroke-width="2" stroke-linejoin="round"/>
+                <rect x="61" y="70" width="5" height="4" fill="#f97316"/>
+                <rect x="74" y="70" width="5" height="4" fill="#f97316"/>
+                <!-- Bottom Pouch Holes -->
+                <circle cx="52" cy="112" r="5.5" fill="#1c1917" stroke="#c2410c" stroke-width="2"/>
+                <circle cx="88" cy="112" r="5.5" fill="#1c1917" stroke="#c2410c" stroke-width="2"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-orange-200 mt-1">Calabaza Cierre</span>
+              <span class="text-[10px] text-orange-400/80">Guarda-Secretos</span>
+            </div>
+
+          </div>
+
+          <!-- TABLA DE MADERA 1 (SUPERIOR) -->
+          <div class="w-full h-5 wooden-shelf rounded-lg mb-8 relative z-20"></div>
+
+          <!-- ================= ESTANTE INFERIOR (3 PELUCHES + CAJITA EMBRUJADA) ================= -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 items-end pt-2 px-2 md:px-6 relative z-10">
+
+            <!-- 5. MUÑECO CALABAZA CON PAÑUELO VERDE -->
+            <div id="plush-calabaza-panuelo" onclick="interactPlushie('calabazaPanuelo', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-amber-950/90 border border-amber-400/50 text-amber-200 font-handwriting text-sm shadow-md group-hover:bg-amber-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"¡Tocame!"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Body & Paws -->
+                <ellipse cx="70" cy="105" rx="27" ry="22" fill="#f97316" stroke="#c2410c" stroke-width="2"/>
+                <circle cx="45" cy="121" r="10" fill="#fb923c" stroke="#c2410c" stroke-width="2"/>
+                <circle cx="95" cy="121" r="10" fill="#fb923c" stroke="#c2410c" stroke-width="2"/>
+                <ellipse cx="42" cy="102" rx="8" ry="13" fill="#fb923c" transform="rotate(20 42 102)"/>
+                <ellipse cx="98" cy="102" rx="8" ry="13" fill="#fb923c" transform="rotate(-20 98 102)"/>
+                <!-- Brown Stem on Head -->
+                <path d="M 65 32 Q 70 23, 76 32" fill="#78350f" stroke="#451a03" stroke-width="3" stroke-linecap="round"/>
+                <!-- Pumpkin Head -->
+                <ellipse cx="70" cy="60" rx="35" ry="29" fill="#fb923c" stroke="#c2410c" stroke-width="2"/>
+                <!-- Cute Round Eyes, Triangle Nose & Grin -->
+                <circle cx="56" cy="56" r="4.2" fill="#18181b"/>
+                <circle cx="84" cy="56" r="4.2" fill="#18181b"/>
+                <polygon points="67,63 70,58 73,63" fill="#18181b"/>
+                <path d="M 54 68 Q 70 79, 86 68 Z" fill="#18181b"/>
+                <rect x="64" y="68" width="4" height="3.5" fill="#fb923c"/>
+                <rect x="73" y="68" width="4" height="3.5" fill="#fb923c"/>
+                <!-- Green Bandana on Neck -->
+                <polygon points="46,85 94,85 70,104" fill="#16a34a" stroke="#14532d" stroke-width="2" stroke-linejoin="round"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-amber-200 mt-1">Calabacita</span>
+              <span class="text-[10px] text-amber-400/80">Pañuelo Verde</span>
+            </div>
+
+            <!-- 6. ESQUELETITO (MOSTAZA) -->
+            <div id="plush-esqueleto" onclick="interactPlushie('esqueleto', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-slate-900/90 border border-slate-400/50 text-slate-200 font-handwriting text-sm shadow-md group-hover:bg-slate-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"¡Huesitos!"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Black Body & Limbs -->
+                <ellipse cx="70" cy="106" rx="26" ry="22" fill="#111115" stroke="#27272a" stroke-width="2"/>
+                <circle cx="46" cy="122" r="10" fill="#09090b" stroke="#27272a" stroke-width="2"/>
+                <circle cx="94" cy="122" r="10" fill="#09090b" stroke="#27272a" stroke-width="2"/>
+                <!-- White Ribcage Bones on Chest -->
+                <line x1="70" y1="93" x2="70" y2="115" stroke="#f8fafc" stroke-width="3" stroke-linecap="round"/>
+                <path d="M 58 97 Q 70 100, 82 97" fill="none" stroke="#f8fafc" stroke-width="2.8" stroke-linecap="round"/>
+                <path d="M 56 104 Q 70 107, 84 104" fill="none" stroke="#f8fafc" stroke-width="2.8" stroke-linecap="round"/>
+                <path d="M 60 111 Q 70 114, 80 111" fill="none" stroke="#f8fafc" stroke-width="2.8" stroke-linecap="round"/>
+                <!-- Black Hood & White Skull Face -->
+                <ellipse cx="70" cy="60" rx="35" ry="30" fill="#111115" stroke="#27272a" stroke-width="2"/>
+                <ellipse cx="70" cy="61" rx="29" ry="25" fill="#f8fafc"/>
+                <!-- Eyes, Nose & Stitched Smile -->
+                <circle cx="57" cy="59" r="5" fill="#09090b"/>
+                <circle cx="55.5" cy="57.5" r="1.5" fill="#ffffff"/>
+                <circle cx="83" cy="59" r="5" fill="#09090b"/>
+                <circle cx="81.5" cy="57.5" r="1.5" fill="#ffffff"/>
+                <polygon points="68,66 70,62 72,66" fill="#09090b"/>
+                <path d="M 58 72 Q 70 78, 82 72" fill="none" stroke="#09090b" stroke-width="2" stroke-linecap="round"/>
+                <line x1="63" y1="71" x2="63" y2="76" stroke="#09090b" stroke-width="1.5"/>
+                <line x1="70" y1="73" x2="70" y2="78" stroke="#09090b" stroke-width="1.5"/>
+                <line x1="77" y1="71" x2="77" y2="76" stroke="#09090b" stroke-width="1.5"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-slate-200 mt-1">Esqueletito</span>
+              <span class="text-[10px] text-slate-400/80">Amor Hasta los Huesos</span>
+            </div>
+
+            <!-- 7. DIABLITO ROJO (MOSTAZA) -->
+            <div id="plush-diablito" onclick="interactPlushie('diablito', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-red-950/90 border border-red-400/50 text-red-200 font-handwriting text-sm shadow-md group-hover:bg-red-600 group-hover:text-white transition flex items-center gap-1">
+                <span>💌</span> <span>"¡Grrr tierno!"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Little Black Bat Wings -->
+                <path d="M 42 92 L 18 82 L 26 98 L 16 106 L 44 108 Z" fill="#18181b"/>
+                <path d="M 98 92 L 122 82 L 114 98 L 124 106 L 96 108 Z" fill="#18181b"/>
+                <!-- Red Body & Feet -->
+                <ellipse cx="70" cy="105" rx="26" ry="22" fill="#dc2626" stroke="#991b1b" stroke-width="2"/>
+                <circle cx="46" cy="121" r="10" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+                <circle cx="94" cy="121" r="10" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+                <!-- Curved Black Devil Horns -->
+                <path d="M 44 38 Q 36 16, 52 24 Q 54 32, 54 36 Z" fill="#18181b"/>
+                <path d="M 96 38 Q 104 16, 88 24 Q 86 32, 86 36 Z" fill="#18181b"/>
+                <!-- Red Head -->
+                <ellipse cx="70" cy="60" rx="34" ry="29" fill="#ef4444" stroke="#991b1b" stroke-width="2"/>
+                <!-- Cute Angry Eyebrows & Eyes -->
+                <line x1="48" y1="51" x2="62" y2="57" stroke="#18181b" stroke-width="3" stroke-linecap="round"/>
+                <line x1="92" y1="51" x2="78" y2="57" stroke="#18181b" stroke-width="3" stroke-linecap="round"/>
+                <circle cx="56" cy="61" r="4.2" fill="#18181b"/>
+                <circle cx="55" cy="59.5" r="1.4" fill="#ffffff"/>
+                <circle cx="84" cy="61" r="4.2" fill="#18181b"/>
+                <circle cx="83" cy="59.5" r="1.4" fill="#ffffff"/>
+                <!-- Cute Mouth with Pink Tongue & Fang -->
+                <path d="M 61 70 Q 70 79, 79 70 Z" fill="#18181b"/>
+                <ellipse cx="70" cy="73.5" rx="5" ry="2.5" fill="#f472b6"/>
+                <polygon points="64,70 66,73 68,70" fill="#ffffff"/>
+                <polygon points="72,70 74,73 76,70" fill="#ffffff"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-red-200 mt-1">Diablito Rojo</span>
+              <span class="text-[10px] text-red-400/80">Enojadito Consentido</span>
+            </div>
+
+            <!-- 8. LA CAJITA EMBRUJADA DE MOSTAZA (BONUS INTERACTIVO) -->
+            <div id="plush-cajita" onclick="interactPlushie('cajitaMostaza', this)" class="plushie-item group cursor-pointer flex flex-col items-center relative">
+              <div class="mb-1 px-2.5 py-0.5 rounded-full bg-rose-950/90 border border-rose-400/50 text-rose-200 font-handwriting text-sm shadow-md group-hover:bg-rose-600 group-hover:text-white transition flex items-center gap-1">
+                <span>🎁</span> <span>"¡La Cajita!"</span>
+              </div>
+              <svg class="w-28 h-28 md:w-32 md:h-32 overflow-visible" viewBox="0 0 140 140">
+                <!-- Box Handle & Roof -->
+                <path d="M 48 45 Q 70 15, 92 45" fill="none" stroke="#7f1d1d" stroke-width="8" stroke-linecap="round"/>
+                <polygon points="28,62 48,40 92,40 112,62" fill="#991b1b" stroke="#450a0a" stroke-width="2"/>
+                <!-- Box Main Body -->
+                <rect x="28" y="62" width="84" height="62" rx="4" fill="#7f1d1d" stroke="#450a0a" stroke-width="2.5"/>
+                <!-- Spooky Red Moon Window -->
+                <circle cx="70" cy="93" r="24" fill="#ef4444" stroke="#b91c1c" stroke-width="2"/>
+                <!-- Mostaza M Logo -->
+                <text x="70" y="57" text-anchor="middle" fill="#ffffff" font-family="Cinzel, serif" font-weight="bold" font-size="15">M CAJITA</text>
+                <!-- Bats & Silhouettes -->
+                <path d="M 60 85 Q 70 92, 80 85 Q 74 96, 70 93 Q 66 96, 60 85 Z" fill="#450a0a"/>
+                <circle cx="70" cy="104" r="7" fill="#450a0a"/>
+              </svg>
+              <span class="font-serif-vintage text-xs md:text-sm font-bold text-rose-200 mt-1">Cajita Embrujada</span>
+              <span class="text-[10px] text-rose-400/80">Colección Completa</span>
+            </div>
+
+          </div>
+
+          <!-- TABLA DE MADERA 2 (INFERIOR) -->
+          <div class="w-full h-6 wooden-shelf rounded-lg relative z-20"></div>
+        </div>
+
+        <div class="mt-6 p-4 rounded-xl bg-purple-900/25 border border-purple-500/30 text-center text-purple-200 font-handwriting text-xl md:text-2xl">
+          "Cada vez que te vi sonreír recibiendo uno de estos peluches supe que mimarte y consentirte es mi lugar favorito en el mundo."
+        </div>
+      </section>
+
+      <!-- ============================================== -->
+      <!-- SECCIÓN 2: BANDA SONORA & RECITALES            -->
+      <!-- ============================================== -->
+      <!-- SECCIÓN 3: LIBRO INTERACTIVO DE 12 PÁGINAS     -->
+      <!-- ============================================== -->
+      <section id="recuerdosSection" class="relative bg-gradient-to-b from-[#16121c]/95 to-[#0d0a12]/95 rounded-3xl p-6 md:p-10 border border-amber-800/40 shadow-2xl backdrop-blur-sm">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-amber-900/40">
+          <div>
+            <span class="text-xs uppercase tracking-widest text-amber-400 font-semibold">12 Capítulos de Nuestro Primer Año</span>
+            <h3 class="font-serif-vintage text-2xl md:text-4xl text-rose-100 font-bold mt-1">
+              📖 Nuestro Libro de Recuerdos (12 Páginas)
+            </h3>
+          </div>
+          <div class="mt-3 md:mt-0 flex flex-wrap items-center gap-2">
+            <span class="text-xs text-amber-200/80 bg-amber-950/50 border border-amber-600/30 px-3 py-1.5 rounded-full">
+              📷 Tocá cualquier foto para subir la nuestra (se guarda sola)
+            </span>
+          </div>
+        </div>
+
+        <!-- Book Controls & Page Indicator -->
+        <div class="flex flex-wrap items-center justify-between gap-4 mb-6 bg-black/40 px-4 py-3 rounded-2xl border border-rose-950/60">
+          <button id="prevPageBtn" onclick="changeBookSpread(-1)" class="flex items-center gap-2 px-4 py-2 rounded-full bg-rose-950/80 hover:bg-rose-800 disabled:opacity-40 disabled:pointer-events-none text-rose-100 text-xs md:text-sm font-medium border border-rose-500/40 transition shadow">
+            <span>←</span> <span>Páginas Anteriores</span>
+          </button>
+
+          <div class="flex flex-col items-center">
+            <span id="bookSpreadIndicator" class="font-serif-vintage text-amber-200 font-bold text-sm md:text-base">
+              Páginas 1 y 2 de 12
+            </span>
+            <!-- Quick Page Dots -->
+            <div id="bookPageDots" class="flex items-center space-x-1.5 mt-1.5"></div>
+          </div>
+
+          <button id="nextPageBtn" onclick="changeBookSpread(1)" class="flex items-center gap-2 px-4 py-2 rounded-full bg-rose-950/80 hover:bg-rose-800 disabled:opacity-40 disabled:pointer-events-none text-rose-100 text-xs md:text-sm font-medium border border-rose-500/40 transition shadow">
+            <span>Páginas Siguientes</span> <span>→</span>
+          </button>
+        </div>
+
+        <!-- 3D Open Scrapbook Container (Shows 2 pages per spread on Desktop, stacked on Mobile) -->
+        <div class="book-wrapper my-4">
+          <div id="bookSpreadContainer" class="book-spread rounded-2xl p-5 sm:p-8 md:p-10 grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 relative min-h-[480px] items-center">
+            
+            <!-- LEFT PAGE -->
+            <div id="leftPageCard" class="flex flex-col justify-between h-full text-zinc-800 relative">
+              <!-- Populated dynamically by JS -->
+            </div>
+
+            <!-- RIGHT PAGE -->
+            <div id="rightPageCard" class="flex flex-col justify-between h-full text-zinc-800 relative border-t md:border-t-0 pt-6 md:pt-0 border-amber-900/20">
+              <!-- Populated dynamically by JS -->
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Hidden file input for uploading photos to any of the 12 pages -->
+        <input type="file" id="bookPhotoInput" class="hidden" accept="image/*" onchange="handleBookPhotoUpload(event)">
+
+        <p class="text-center text-xs text-gray-400 mt-4">
+          💡 Tip: Podés usar las flechas del teclado (◀ ▶) para hojear las 12 páginas del álbum, o tocar el texto de una página para editar tu nota.
+        </p>
+
+      </section>
+
+      <!-- ============================================== -->
+  <!-- MODAL: NOTITA EN 1RA PERSONA DE CADA PELUCHE   -->
+  <!-- ============================================== -->
+  <div id="plushieModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4" onclick="if(event.target===this) closePlushieModal()">
+    <div class="bg-gradient-to-b from-[#231934] to-[#130d1e] border-2 border-purple-400/50 max-w-md w-full rounded-3xl p-6 md:p-8 relative shadow-[0_0_50px_rgba(168,85,247,0.4)] smooth-fade">
+      <button onclick="closePlushieModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-gray-300 hover:text-white flex items-center justify-center transition">✕</button>
+      
+      <!-- Personality Badge -->
+      <div class="flex justify-center">
+        <span id="plushieModalPersonality" class="px-3 py-1 rounded-full bg-fuchsia-950 border border-fuchsia-400/40 text-fuchsia-200 text-[11px] font-mono uppercase tracking-wider">
+          Personalidad
+        </span>
+      </div>
+
+      <h4 id="plushieModalTitle" class="font-serif-vintage text-2xl md:text-3xl font-bold text-center text-purple-100 mt-3 mb-4">
+        Peluche
+      </h4>
+
+      <!-- Handwritten Sticky Note from the Plushie -->
+      <div class="bg-[#fdf8eb] text-zinc-800 p-5 rounded-2xl shadow-inner border-l-4 border-rose-500 relative transform rotate-[-0.5deg]">
+        <span class="absolute -top-3 right-4 text-xs bg-rose-600 text-white px-2 py-0.5 rounded font-mono shadow">Notita para Paloma ♡</span>
+        <p id="plushieModalNote" class="font-handwriting text-2xl leading-snug text-zinc-900">
+          "Hola Palo..."
+        </p>
+      </div>
+
+      <p id="plushieModalDesc" class="text-xs text-purple-200/80 text-center italic mt-4">
+        Recuerdo especial.
+      </p>
+
+      <div class="text-center mt-6 pt-4 border-t border-purple-800/40 flex justify-center gap-3">
+        <button onclick="hugPlushieAgain()" class="px-5 py-2 bg-pink-700 hover:bg-pink-600 text-white text-xs font-semibold rounded-full shadow transition flex items-center gap-1.5">
+          <span>🤗</span> <span>Darle un abrazo</span>
+        </button>
+        <button onclick="closePlushieModal()" class="px-5 py-2 bg-purple-900/60 hover:bg-purple-800 text-purple-200 text-xs rounded-full border border-purple-500/40 transition">
+          Cerrar notita
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================== -->
+  <!-- MODAL: LECTURA Y EDICIÓN DE LA CARTA COMPLETA  -->
+  <!-- ============================================== -->
+  <div id="letterModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden items-center justify-center p-4 overflow-y-auto" onclick="if(event.target===this) closeLetterModal()">
+    <div class="relative max-w-2xl w-full bg-[#f6f1e5] text-zinc-900 rounded-2xl p-6 md:p-10 shadow-[0_0_50px_rgba(226,186,115,0.3)] my-8 border-4 border-amber-800/20 smooth-fade">
+      
+      <!-- Close button -->
+      <button onclick="closeLetterModal()" class="absolute top-4 right-4 text-zinc-500 hover:text-zinc-900 text-xl font-bold p-1">✕</button>
+
+      <!-- Letter Header -->
+      <div class="border-b-2 border-zinc-300 pb-4 mb-6 flex justify-between items-center text-xs font-mono text-zinc-600 pr-6">
+        <span>10 de Noviembre • Nuestro Primer Aniversario</span>
+        <button onclick="toggleEditLetter()" id="editLetterBtn" class="text-rose-800 hover:underline font-semibold flex items-center gap-1">
+          <span>✏️ Editar mi carta</span>
+        </button>
+      </div>
+
+      <!-- Letter Content (Editable by Mau with localStorage persistence) -->
+      <div id="letterBodyContent" class="font-serif-vintage text-zinc-800 space-y-4 text-sm md:text-base leading-relaxed outline-none rounded-lg p-1 transition" contenteditable="false">
+        <p class="font-bold text-lg text-rose-950 font-serif-vintage">Mi amor, mi hermosa Paloma:</p>
+        
+        <p>
+          Leí una y mil veces tus cartas. Esas páginas donde con tanta ternura me hablabas de «usted», donde me decías que esperarías que el mar se agote con tal de demostrarme tu paciencia, y donde con miedo te preguntabas si algún día una torpeza rompería esto como un cristal.
+        </p>
+
+        <p class="italic text-zinc-700 bg-amber-50 p-3 rounded-lg border-l-4 border-rose-400">
+          «Prefiero ser la sombra que custodia sus pasos en silencio, antes que la reina de un mundo donde usted no habite...»
+        </p>
+
+        <p>
+          Quiero que hoy, al cumplir nuestro primer año, guardes para siempre esta certeza en tu corazón: <strong>acá nunca vas a tener que temer que un error tuyo signifique mi adiós</strong>. Vengo de ver cuánto das, cómo aprendiste a recibir amor sincero, y la paciencia y dulzura infinita que ponés en nosotros cada fin de semana que venís a casa y cocinamos riéndonos de cualquier tontería.
+        </p>
+
+        <p>
+          Me hiciste el hombre más feliz del planeta. Me hiciste saltar con My Chemical Romance, gritar en la WWE, escuchar All Time Low y Simple Plan en bucle, y emocionarme sabiendo que dentro de poco vas a tener a Kellin Quinn enfrente cumpliendo tu sueño de chica.
+        </p>
+
+        <p>
+          Tal como escribiste: <em>"prefiero perderme en la duda de su mano, que tener todas las certezas sin usted"</em>. Hoy te tomo de la mano con la certeza más grande que jamás sentí: <strong>este libro recién empieza, y quiero escribir todas sus páginas con vos.</strong>
+        </p>
+
+        <p class="text-right font-script text-3xl text-rose-900 pt-4">
+          Por siempre tuyo,<br>
+          <span class="text-2xl font-bold">Mau ♡</span>
+        </p>
+      </div>
+
+      <div class="mt-8 pt-4 border-t border-zinc-300 flex justify-between items-center">
+        <span id="letterSaveStatus" class="text-xs text-zinc-500 font-mono">1 año juntos • Infinitos por venir</span>
+        <button onclick="closeLetterModal()" class="px-6 py-2 bg-rose-900 hover:bg-rose-800 text-rose-100 text-xs font-medium rounded-full shadow transition">
+          Cerrar carta
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ============================================== -->
+  <!-- JAVASCRIPT: LÓGICA INTERACTIVA Y SONIDO        -->
+  <!-- ============================================== -->
+  <script>
+    // ----------------------------------------------------
+    // 1. ESTADO DE LA MARGARITA & FRASES POÉTICAS
+    // ----------------------------------------------------
+    const oracleQuotes = [
+      "Cada fin de semana cocinando juntos, es asi como quiero estar. ♡",
+      "Despertarme a tu lado es el regalo mas bello que la vida pudo haberme dado.",
+      "Tu sonrisa, tu cuerpo y tu personalidad son cualidades del amor de mi vida.",
+      "Cuidarte y consentirte es mi adiccion favorita.",
+      "Esas miradas y esas risas llenas de complicidad. ♡",
+      "Dormir acurrucados como si fueramos dos garrapatas",
+      "El como nos preocupamos el uno por el otro.",
+      "Escucharte reir sin parar porque hice una idiotez, nunca me senti tan vivo.",
+      "El instante más fugaz se vuelve eterno cuando te miro.",
+      "Me encanta verte sonreír cada vez que te traigo una sorpresa.",
+      "Nada de lo que pueda dar o hacer podra dimensionarte lo mucho que te amo",
+      "Te amo, Paloma Romero Sanchez."
+    ];
+
+    let remainingPetals = 12;
+    const totalPetals = 12;
+
+    function initDaisy() {
+      const container = document.getElementById('flowerPetals');
+      container.innerHTML = '';
+
+      for (let i = 0; i < totalPetals; i++) {
+        const angle = (360 / totalPetals) * i;
+        const petal = document.createElement('div');
+        petal.className = 'petal absolute w-9 h-28 bg-gradient-to-t from-yellow-100 via-white to-white rounded-full shadow-md border border-amber-100/60';
+        petal.style.top = '14px';
+        petal.style.transform = `rotate(${angle}deg) translateY(-32px)`;
+        petal.dataset.index = i;
+
+        petal.addEventListener('click', (e) => pluckPetal(petal));
+        container.appendChild(petal);
+      }
+      updateDaisyCounter();
+    }
+
+    function pluckPetal(petalElement) {
+      if (petalElement.classList.contains('plucked')) return;
+
+      petalElement.classList.add('plucked');
+      playHarpNote();
+      remainingPetals--;
+      updateDaisyCounter();
+
+      const quote = oracleQuotes[totalPetals - remainingPetals - 1] || "Te amo infinitamente, Paloma ♡";
+      const textElem = document.getElementById('petalOracleText');
+      textElem.style.opacity = '0';
+      
+      setTimeout(() => {
+        textElem.innerText = `"${quote}"`;
+        textElem.style.opacity = '1';
+      }, 200);
+
+      if (remainingPetals === 0) {
+        setTimeout(() => {
+          textElem.innerHTML = "<span class='text-amber-300 font-bold'>¡Todos los pétalos dicen lo mismo: Eres el amor de mi vida! ♡</span>";
+          spawnConfetti();
+        }, 600);
+      }
+    }
+
+    // Click on flower center pulls the next available petal
+    document.getElementById('flowerCenter').addEventListener('click', () => {
+      const unplucked = document.querySelectorAll('.petal:not(.plucked)');
+      if (unplucked.length > 0) {
+        pluckPetal(unplucked[0]);
+      } else {
+        // Reset petals if all were plucked
+        remainingPetals = totalPetals;
+        document.querySelectorAll('.petal').forEach(p => p.classList.remove('plucked'));
+        updateDaisyCounter();
+        document.getElementById('petalOracleText').innerText = "¡Volviste a florecer la margarita! ¿Me quiere mucho o muchísimo?";
+        playChimeSuccess();
+      }
+    });
+
+    function updateDaisyCounter() {
+      const counter = document.getElementById('daisyCounter');
+      counter.innerText = remainingPetals > 0 ? `${remainingPetals} pétalos` : "¡Florecer de nuevo!";
+    }
+
+    // ----------------------------------------------------
+    // 2. NAVEGACIÓN ENTRE MARGARITA Y EL HUB DE 1 AÑO
+    // ----------------------------------------------------
+    const daisyView = document.getElementById('daisyView');
+    const anniversaryHub = document.getElementById('anniversaryHub');
+    const openHubBtn = document.getElementById('openAnniversaryHubBtn');
+    const backToDaisyBtn = document.getElementById('backToDaisyBtn');
+
+    openHubBtn.addEventListener('click', () => {
+      daisyView.style.opacity = '0';
+      setTimeout(() => {
+        daisyView.classList.add('hidden');
+        anniversaryHub.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'instant' });
+        setTimeout(() => {
+          anniversaryHub.style.opacity = '1';
+        }, 50);
+      }, 400);
+      playKeyUnlockSound();
+    });
+
+    backToDaisyBtn.addEventListener('click', () => {
+      anniversaryHub.style.opacity = '0';
+      setTimeout(() => {
+        anniversaryHub.classList.add('hidden');
+        daisyView.classList.remove('hidden');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          daisyView.style.opacity = '1';
+        }, 50);
+      }, 400);
+    });
+
+    function scrollToSection(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+
+    // ----------------------------------------------------
+    // 3. PERSONALIDADES Y NOTITAS DE LOS PELUCHES
+    // ----------------------------------------------------
+    const plushieData = {
+      kuromi: {
+        personality: "🖤 La Kuromi uwu",
+        title: "Kuromi",
+        note: "«¡Escuchame bien, Paloma o mejor dicho Mita, Yo soy realmente un infiltrada jeje pero te digo que al principio vigilaba a Mau de cerca y siendo muy desconfiada... pero ya a este punto dejate mimar que te lo mereces.",
+        desc: "Tu favorita indiscutida: rebelde por fuera, puro corazón por dentro."
+      },
+      gatito: {
+        personality: "🧙‍♀️ Chicho Magico :3",
+        title: "Gatito Hechicero",
+        note: "«Miau, Mita... Con mi sombrerito de brujo tiré un hechizo para que nunca les falten maratones de anime, sesiones de roblox y abrazos fuertes con Puppy. Y por cierto, espero que me lleves hoy que vas a ver a tu novio",
+        desc: "A veces le dicen que es un gato de mierda."
+      },
+      frankenstein: {
+        personality: "💚 Amigable uwu",
+        title: "Franky",
+        note: "«¡Holaaaaaaaa Palomaaaaaaa! Dicen que estoy hecho de muchos pedacitos, ¡pero lo mío son costuras de amor! Yo soy testigo de toda la paciencia hermosa que le tenés a Mau y de cómo él se derrite por vos cada vez que sonreís.»",
+        desc: "El monstruito verde"
+      },
+      calabazaCierre: {
+        personality: "🎃 Guardiana de Secretos",
+        title: "Calabacita Mochila",
+        note: "«¡Adentro de mi cierre guardo todos los secretos, risas y deseos de este primer año juntos! Si algún día tenés miedo o dudas, acordate que acá adentro guardamos la promesa de Puppy de cuidarte siempre.»",
+        desc: "La calabacitaaaaaaaaaa o a veces me dicen zapallito :c.»"
+      },
+      calabazaPanuelo: {
+        personality: "🧣 Calabaza con cara de trolo",
+        title: "Calabacin",
+        note: "«¡Mi momento favorito es cuando vuelven de comer rico o de pasear y se tiran horas acostados y abrazados.»",
+        desc: "Su hijito ficticio"
+      },
+      esqueleto: {
+        personality: "💀 Fan de las Luchas",
+        title: "Huesitos",
+        note: "«¡Te quiero mucho Mami, me acuerdo cuando vos y papi me consiguieron el mostaza del abasto shopping 🥺💘»",
+        desc: "Esqueletito pero me porto bien 😊."
+      },
+      diablito: {
+        personality: "😈 Travieso pero solo quiere mimos",
+        title: "Diablito Rojo",
+        note: "«¡Grrr! Pongo esta carita de malo para hacerme el rudo, pero bien sabemos que a los dos segundos de que Mau nos hace mimos y nos da besitos se nos pasa todo y terminamos riéndonos.»",
+        desc: "El diablito rojo con alitas y cuernitos de la Cajita Embrujada."
+      },
+      cajitaMostaza: {
+        personality: "🎁 El Cofre de Halloween",
+        title: "La Cajita Embrujada",
+        note: "«¡De acá salimos todo el escuadrón de Halloween! Cada vez que Mau aparecía con uno nuevo de nosotros era solo una excusa más para ver cómo te brillaban los ojitos de felicidad.»",
+        desc: "La colección completa 🥰"
+      }
+    };
+
+    function interactPlushie(type, element) {
+      if (element) {
+        element.classList.remove('plushie-bounce');
+        void element.offsetWidth; // trigger reflow
+        element.classList.add('plushie-bounce');
+      }
+      openPlushieModal(type);
+    }
+
+    function openPlushieModal(type) {
+      const data = plushieData[type];
+      if (!data) return;
+      document.getElementById('plushieModalPersonality').innerText = data.personality;
+      document.getElementById('plushieModalTitle').innerText = data.title;
+      document.getElementById('plushieModalNote').innerText = data.note;
+      document.getElementById('plushieModalDesc').innerText = data.desc;
+
+      const modal = document.getElementById('plushieModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      playPlushieSqueak();
+    }
+
+    function hugPlushieAgain() {
+      playChimeSuccess();
+      spawnConfetti();
+    }
+
+    function closePlushieModal() {
+      const modal = document.getElementById('plushieModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    // ----------------------------------------------------
+    // 4. LIBRO DE RECUERDOS INTERACTIVO DE 12 PÁGINAS
+    // ----------------------------------------------------
+    const defaultBookPages = [
+      {
+        page: 1,
+        date: "17 de Enero, 2026",
+        title: "Nuestra primera convivencia juntos",
+        caption: "La primera vez que nos animamos a ir a un hotel y pasamos un fin de semana juntos, me hiciste unos ricos fideos 🥺❤️",
+        sticker: "✨💑",
+        tapeColor: "rgba(225, 29, 72, 0.25)",
+        img: "Comidita_Xd.jpg"
+      },
+      {
+        page: 2,
+        date: "11 de Septiembre, 2026",
+        title: "WWE Juntos en Vivo",
+        caption: "Vimos las luchas, y lo mas importantes es que fuimos juntos ❤️",
+        sticker: "🤩🖤",
+        tapeColor: "rgba(185, 28, 28, 0.3)",
+        img: "Corazon.jpeg"
+      },
+      {
+        page: 3,
+        date: "14 de Febrero, 2026",
+        title: "Estuvimos como garrapatas todo el dia y a la noche fuimos a comer comida japonesaaaa 🥺💘",
+        caption: "Ese dia me acuerdo que te reias porque no sabia usar los palitos y se me cai todo 😭",
+        sticker: "👩‍❤️‍👨",
+        tapeColor: "rgba(217, 119, 6, 0.25)",
+        img: "14.jpg"
+      },
+      {
+        page: 4,
+        date: "15 de Febrero, 2026",
+        title: "Al dia siguiente...",
+        caption: "Recorriendo lugares para comer encontramos ese bodegon donde literalmente no pudimos comer mas sin reventar 💀",
+        sticker: "🍔🍷",
+        tapeColor: "rgba(147, 51, 234, 0.22)",
+        img: "152xd.jpg"
+      },
+      {
+        page: 5,
+        date: "1 de Febrero, 2026",
+        title: "MCR en Argentina",
+        caption: "Nunca voy a olvidar tu hermoso rostro llorando luego de haber arrancado la primera cancion, lo mas bello que he visto en mi vida.",
+        sticker: "🤼‍♀️🔥",
+        tapeColor: "rgba(234, 88, 12, 0.28)",
+        img: "Fotorandom.jpg"
+      },
+      {
+        page: 6,
+        date: "11 de Septiembre",
+        title: "Disfrutando del show!",
+        caption: "Siempre juntos, disfrutando cada segundo contigo.",
+        sticker: "👻🍿",
+        tapeColor: "rgba(39, 39, 42, 0.3)",
+        img: "WWE_Copia.jpeg"
+      },
+      {
+        page: 7,
+        date: "xxxxxx",
+        title: "Pero lo importante...",
+        caption: "Lo realmente importante...",
+        sticker: "☀️🕯️",
+        tapeColor: "rgba(37, 99, 235, 0.22)",
+        img: "uwu.jpg"
+      },
+      {
+        page: 8,
+        date: "xxxxxx",
+        title: "Es que no importa el lugar",
+        caption: "Si es mi casa, en la tuya, o si estamos en las calles de Capital o de Provincia...",
+        sticker: "☀️🕯️",
+        tapeColor: "rgba(168, 85, 247, 0.25)",
+        img: "campo.jpeg"
+      },
+      {
+        page: 9,
+        date: "xxxxxx",
+        title: "O el dia...",
+        caption: "Sin importar si es lunes o un sabado por la mañana o por la noche...",
+        sticker: "☀️🕯️",
+        tapeColor: "rgba(225, 29, 72, 0.25)",
+        img: "dormilona.jpeg"
+      },
+      {
+        page: 10,
+        date: "xxxxxx",
+        title: "Porque mientras te tenga a mi lado...",
+        caption: "...",
+        sticker: "☀️🕯️",
+        tapeColor: "rgba(245, 158, 11, 0.28)",
+        img: "foto1xd.jpg"
+      },
+      {
+        page: 11,
+        date: "xxxxxx",
+        title: "Siempre me sentire en casa.",
+        caption: "Gracias por poner siempre lo mejor de vos, por tu paciencia infinita y por dejarme demostrarte cuánto valés y cuánto te amo.",
+        sticker: "🌸🤍",
+        tapeColor: "rgba(236, 72, 153, 0.25)",
+        img: "manos.jpg"
+      },
+      {
+        page: 12,
+        date: "10 de Noviembre, 2026",
+        title: "¡Feliz Primer Aniversario!",
+        caption: "Un año entero siendo inmensamente feliz a tu lado, Paloma. Y este cuento que estamos escribiendo apenas comienza.",
+        sticker: "🥂♾️",
+        tapeColor: "rgba(217, 119, 6, 0.3)",
+        img: "mujer.jpg"
+      }
+    ];
+
+    let currentSpreadIndex = 0; // 0 to 5 (6 spreads = 12 pages)
+    let activeUploadPageNumber = null;
+
+    function getSavedPageData(pageNumber) {
+      const base = defaultBookPages[pageNumber - 1];
+      try {
+        const savedImg = localStorage.getItem(`paloma_book_img_${pageNumber}`);
+        const savedCap = localStorage.getItem(`paloma_book_cap_${pageNumber}`);
+        return {
+          ...base,
+          img: savedImg || base.img,
+          caption: savedCap || base.caption
+        };
+      } catch (e) {
+        return base;
+      }
+    }
+
+    function renderBookPageHTML(pageData, isLeft) {
+      const tiltClass = isLeft ? "rotate-[-1deg]" : "rotate-[1deg]";
+      return `
+        <div>
+          <div class="flex items-center justify-between text-xs font-mono text-amber-900/70 mb-3 border-b border-amber-900/15 pb-1.5">
+            <span>${pageData.date}</span>
+            <span class="font-bold">Pág. ${pageData.page} / 12</span>
+          </div>
+
+          <!-- Polaroid Frame inside Scrapbook Page -->
+          <div class="relative bg-white p-3 pb-5 rounded-lg shadow-md border border-stone-200 transform ${tiltClass} transition hover:rotate-0 duration-300">
+            <!-- Washi Tape on Top -->
+            <div class="washi-tape w-28 h-6 absolute -top-3 left-1/2 -translate-x-1/2 transform -rotate-2 z-10" style="background: ${pageData.tapeColor}"></div>
+
+            <div onclick="openBookPhotoUploader(${pageData.page})" class="relative w-full h-52 sm:h-56 bg-stone-800 rounded overflow-hidden cursor-pointer group">
+              <img id="book-img-${pageData.page}" src="${pageData.img}" alt="${pageData.title}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+              <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition flex flex-col items-center justify-center text-white text-xs font-semibold p-2 text-center">
+                <span class="text-lg mb-1">📷</span>
+                <span>Cambiar foto de Página ${pageData.page}</span>
+              </div>
+            </div>
+
+            <span class="absolute bottom-2 right-3 text-xl select-none">${pageData.sticker}</span>
+          </div>
+
+          <!-- Handwritten Memory Description -->
+          <div class="mt-4 px-1">
+            <h4 class="font-serif-vintage text-lg md:text-xl font-bold text-rose-950">${pageData.title}</h4>
+            <p id="book-cap-${pageData.page}" contenteditable="true" onblur="saveBookCaption(${pageData.page}, this.innerText)" title="Tocá para editar esta nota" class="font-handwriting text-2xl text-zinc-800 mt-1 leading-snug outline-none focus:bg-amber-100/70 rounded px-1 transition">
+              ${pageData.caption}
+            </p>
+          </div>
+        </div>
+
+        <div class="mt-4 pt-2 flex justify-between items-center text-[11px] text-amber-900/60 font-mono">
+          <span>♡ Paloma & Mau</span>
+          <button onclick="openBookPhotoUploader(${pageData.page})" class="text-rose-800 hover:underline font-sans font-medium">
+            Subir foto aquí
+          </button>
+        </div>
+      `;
+    }
+
+    function renderBookSpread() {
+      const leftPageNum = currentSpreadIndex * 2 + 1;
+      const rightPageNum = currentSpreadIndex * 2 + 2;
+
+      const leftData = getSavedPageData(leftPageNum);
+      const rightData = getSavedPageData(rightPageNum);
+
+      const spreadContainer = document.getElementById('bookSpreadContainer');
+      spreadContainer.classList.remove('page-flip-anim');
+      void spreadContainer.offsetWidth;
+      spreadContainer.classList.add('page-flip-anim');
+
+      document.getElementById('leftPageCard').innerHTML = renderBookPageHTML(leftData, true);
+      document.getElementById('rightPageCard').innerHTML = renderBookPageHTML(rightData, false);
+
+      // Update indicator & buttons
+      document.getElementById('bookSpreadIndicator').innerText = `Páginas ${leftPageNum} y ${rightPageNum} de 12`;
+      document.getElementById('prevPageBtn').disabled = currentSpreadIndex === 0;
+      document.getElementById('nextPageBtn').disabled = currentSpreadIndex === 5;
+
+      // Render dots
+      const dotsContainer = document.getElementById('bookPageDots');
+      dotsContainer.innerHTML = '';
+      for (let i = 0; i < 6; i++) {
+        const dot = document.createElement('button');
+        dot.className = `h-2 rounded-full transition-all ${i === currentSpreadIndex ? 'w-6 bg-amber-400' : 'w-2 bg-rose-900 hover:bg-rose-700'}`;
+        dot.title = `Ir a páginas ${i * 2 + 1}-${i * 2 + 2}`;
+        dot.onclick = () => {
+          currentSpreadIndex = i;
+          renderBookSpread();
+          playLetterOpenSound();
+        };
+        dotsContainer.appendChild(dot);
+      }
+    }
+
+    function changeBookSpread(direction) {
+      const nextIndex = currentSpreadIndex + direction;
+      if (nextIndex >= 0 && nextIndex <= 5) {
+        currentSpreadIndex = nextIndex;
+        renderBookSpread();
+        playLetterOpenSound();
+      }
+    }
+
+    function openBookPhotoUploader(pageNumber) {
+      activeUploadPageNumber = pageNumber;
+      document.getElementById('bookPhotoInput').click();
+    }
+
+    function handleBookPhotoUpload(event) {
+      const file = event.target.files[0];
+      if (file && activeUploadPageNumber) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          const dataUrl = e.target.result;
+          const imgEl = document.getElementById(`book-img-${activeUploadPageNumber}`);
+          if (imgEl) imgEl.src = dataUrl;
+          try {
+            localStorage.setItem(`paloma_book_img_${activeUploadPageNumber}`, dataUrl);
+          } catch (err) {}
+        };
+        reader.readAsDataURL(file);
+        playCameraClick();
+      }
+    }
+
+    function saveBookCaption(pageNumber, text) {
+      try {
+        localStorage.setItem(`paloma_book_cap_${pageNumber}`, text.trim());
+      } catch (e) {}
+    }
+
+    // Keyboard navigation for the 12-page book
+    window.addEventListener('keydown', (e) => {
+      if (anniversaryHub.classList.contains('hidden')) return;
+      if (document.activeElement && document.activeElement.isContentEditable) return;
+      if (e.key === 'ArrowRight') changeBookSpread(1);
+      if (e.key === 'ArrowLeft') changeBookSpread(-1);
+    });
+
+    // ----------------------------------------------------
+    // 5. MODAL DE LA CARTA & EDICIÓN
+    // ----------------------------------------------------
+    function openLetterModal() {
+      const modal = document.getElementById('letterModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      playLetterOpenSound();
+    }
+
+    function closeLetterModal() {
+      const modal = document.getElementById('letterModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function toggleEditLetter() {
+      const body = document.getElementById('letterBodyContent');
+      const btn = document.getElementById('editLetterBtn');
+      const status = document.getElementById('letterSaveStatus');
+      const isEditing = body.getAttribute('contenteditable') === 'true';
+
+      if (!isEditing) {
+        body.setAttribute('contenteditable', 'true');
+        body.classList.add('bg-amber-100/60', 'ring-2', 'ring-amber-500/50', 'p-3');
+        body.focus();
+        btn.innerHTML = '<span>💾 Guardar mi carta</span>';
+        status.innerText = 'Editando carta... podés escribir libremente';
+      } else {
+        body.setAttribute('contenteditable', 'false');
+        body.classList.remove('bg-amber-100/60', 'ring-2', 'ring-amber-500/50', 'p-3');
+        btn.innerHTML = '<span>✏️ Editar mi carta</span>';
+        try {
+          localStorage.setItem('paloma_custom_letter_html', body.innerHTML);
+          status.innerText = '✓ Carta guardada en este navegador';
+        } catch (e) {
+          status.innerText = '1 año juntos • Infinitos por venir';
+        }
+      }
+    }
+
+    function loadSavedLetter() {
+      try {
+        const saved = localStorage.getItem('paloma_custom_letter_html');
+        if (saved) {
+          document.getElementById('letterBodyContent').innerHTML = saved;
+        }
+      } catch (e) {}
+    }
+
+    // ----------------------------------------------------
+    // 6. MOTOR DE AUDIO SINTETIZADO (Web Audio API)
+    // ----------------------------------------------------
+    let audioCtx = null;
+    let isAmbientPlaying = false;
+    let ambientInterval = null;
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    // Harp note on petal pluck
+    function playHarpNote() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        
+        // Pentatonic scale
+        const notes = [261.63, 293.66, 329.63, 392.00, 440.00, 523.25, 587.33, 659.25];
+        const freq = notes[Math.floor(Math.random() * notes.length)];
+        
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        
+        gain.gain.setValueAtTime(0.15, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.2);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        
+        osc.start();
+        osc.stop(ctx.currentTime + 1.2);
+      } catch (err) {}
+    }
+
+    function playKeyUnlockSound() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(587.33, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(880, ctx.currentTime + 0.3);
+        gain.gain.setValueAtTime(0.12, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.4);
+      } catch (err) {}
+    }
+
+    function playPlushieSqueak() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(600, ctx.currentTime);
+        osc.frequency.linearRampToValueAtTime(900, ctx.currentTime + 0.1);
+        osc.frequency.linearRampToValueAtTime(700, ctx.currentTime + 0.2);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.25);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.25);
+      } catch (e) {}
+    }
+
+    function playCameraClick() {
+      try {
+        const ctx = getAudioContext();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(120, ctx.currentTime);
+        gain.gain.setValueAtTime(0.1, ctx.currentTime);
+        gain.gain.linearRampToValueAtTime(0.001, ctx.currentTime + 0.08);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.08);
+      } catch (e) {}
+    }
+
+    function playLetterOpenSound() {
+      try {
+        const ctx = getAudioContext();
+        const bufferSize = ctx.sampleRate * 0.15;
+        const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+        const data = buffer.getChannelData(0);
+        for (let i = 0; i < bufferSize; i++) {
+          data[i] = (Math.random() * 2 - 1) * Math.exp(-i / (bufferSize * 0.3));
+        }
+        const noise = ctx.createBufferSource();
+        noise.buffer = buffer;
+        const gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.08, ctx.currentTime);
+        noise.connect(gain);
+        gain.connect(ctx.destination);
+        noise.start();
+      } catch (e) {}
+    }
+
+    function playChimeSuccess() {
+      const chords = [392, 523.25, 659.25, 783.99];
+      chords.forEach((freq, idx) => {
+        setTimeout(() => {
+          try {
+            const ctx = getAudioContext();
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.1, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 1.5);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 1.5);
+          } catch(e){}
+        }, idx * 120);
+      });
+    }
+
+    // Playful music riffs for concert cards
+    function playGuitarRiff(band) {
+      const ctx = getAudioContext();
+      let notes = [];
+      if (band === 'mcr') {
+        // Welcome to the black parade iconic intro notes
+        notes = [523.25, 493.88, 440, 392, 349.23];
+      } else if (band === 'sws') {
+        notes = [440, 523.25, 659.25, 587.33];
+      } else if (band === 'sp') {
+        notes = [329.63, 392, 440, 493.88];
+      } else {
+        notes = [349.23, 440, 523.25, 698.46];
+      }
+
+      notes.forEach((freq, i) => {
+        setTimeout(() => {
+          try {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.type = 'sawtooth';
+            osc.frequency.setValueAtTime(freq, ctx.currentTime);
+            gain.gain.setValueAtTime(0.07, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.6);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.6);
+          } catch (e) {}
+        }, i * 220);
+      });
+    }
+
+ // Control de Música Local (MP3) y Volumen
+    const bgMusic = document.getElementById('bgMusic');
+    const toggleAudioBtn = document.getElementById('toggleAudioBtn');
+    const musicText = document.getElementById('musicText');
+    const volumeSlider = document.getElementById('volumeSlider');
+    const volPercent = document.getElementById('volPercent');
+    const volEmoji = document.getElementById('volEmoji');
+
+    // Volumen inicial suave (35%) para que no aturda al arrancar
+    bgMusic.volume = 0.35;
+
+    toggleAudioBtn.addEventListener('click', () => {
+      if (bgMusic.paused) {
+        bgMusic.play().then(() => {
+          isAmbientPlaying = true;
+          musicText.innerText = "Sonando ♡";
+        }).catch(err => {
+          console.error("No se pudo reproducir el audio:", err);
+        });
+      } else {
+        bgMusic.pause();
+        isAmbientPlaying = false;
+        musicText.innerText = "Pausada";
+      }
+    });
+
+    // Ajustar el volumen en vivo al mover la barrita
+    volumeSlider.addEventListener('input', (e) => {
+      const val = parseFloat(e.target.value);
+      bgMusic.volume = val;
+      volPercent.innerText = `${Math.round(val * 100)}%`;
+
+      if (val === 0) {
+        volEmoji.innerText = "🔇";
+      } else if (val < 0.5) {
+        volEmoji.innerText = "🔉";
+      } else {
+        volEmoji.innerText = "🔊";
+      }
+    });
+
+    // ----------------------------------------------------
+    // 7. FONDO ESTRELLADO & CONFETTI
+    // ----------------------------------------------------
+    // 7. CIELO NOCTURNO ESTRELLADO (180+ ESTRELLAS Y FUGACES)
+    // ----------------------------------------------------
+    function createStars() {
+      const container = document.getElementById('starsContainer');
+      container.innerHTML = '';
+      const count = 190;
+      const starColors = ['#ffffff', '#ffe4e6', '#fef3c7', '#f3e8ff', '#fbcfe8'];
+
+      for (let i = 0; i < count; i++) {
+        const star = document.createElement('div');
+        const size = Math.random() < 0.85 ? (Math.random() * 2.2 + 0.8) : (Math.random() * 3.5 + 2);
+        const color = starColors[Math.floor(Math.random() * starColors.length)];
+
+        star.className = 'absolute rounded-full star-twinkle';
+        star.style.width = `${size}px`;
+        star.style.height = `${size}px`;
+        star.style.backgroundColor = color;
+        star.style.top = `${Math.random() * 100}%`;
+        star.style.left = `${Math.random() * 100}%`;
+        star.style.setProperty('--twinkle-duration', `${2 + Math.random() * 4}s`);
+        star.style.animationDelay = `${Math.random() * 5}s`;
+        if (size > 2.6) {
+          star.style.boxShadow = `0 0 ${size * 3}px ${color}`;
+        }
+        container.appendChild(star);
+      }
+
+      // Periodic shooting stars across the dark sky
+      setInterval(() => {
+        if (document.hidden) return;
+        const shoot = document.createElement('div');
+        shoot.className = 'shooting-star';
+        shoot.style.top = `${Math.random() * 45}%`;
+        shoot.style.left = `${40 + Math.random() * 55}%`;
+        container.appendChild(shoot);
+        setTimeout(() => shoot.remove(), 1700);
+      }, 4500);
+    }
+
+    function spawnConfetti() {
+      const colors = ['#f43f5e', '#ec4899', '#fbbf24', '#a855f7', '#ffffff'];
+      for (let i = 0; i < 40; i++) {
+        const c = document.createElement('div');
+        c.className = 'fixed z-50 pointer-events-none rounded-full';
+        c.style.width = `${Math.random() * 8 + 4}px`;
+        c.style.height = `${Math.random() * 8 + 4}px`;
+        c.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        c.style.left = '50%';
+        c.style.top = '50%';
+        document.body.appendChild(c);
+
+        const x = (Math.random() - 0.5) * window.innerWidth * 0.8;
+        const y = (Math.random() - 0.5) * window.innerHeight * 0.8;
+
+        c.animate([
+          { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+          { transform: `translate(${x}px, ${y}px) scale(0)`, opacity: 0 }
+        ], {
+          duration: 1500 + Math.random() * 800,
+          easing: 'cubic-bezier(0.25, 1, 0.5, 1)'
+        }).onfinish = () => c.remove();
+      }
+    }
+
+    // Initialize components on load
+    window.addEventListener('DOMContentLoaded', () => {
+      initDaisy();
+      createStars();
+      renderBookSpread();
+      loadSavedLetter();
+    });
+  </script>
+</body>
+</html>
